@@ -1,0 +1,584 @@
+[
+  {
+    "id": "root_fifth_slapped_cheeks",
+    "text": "Did the rash begin with bright red cheeks (a 'slapped cheek' look)?",
+    "points_if_yes": { "Fifth Disease": "very_high" },
+    "points_if_no": { "Fifth Disease": "n_high" },
+    "next_questions_if_yes": ["sub_fifth_mild_prodrome"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_fifth_mild_prodrome",
+    "text": "Did mild flu-like symptoms happen before the rash?",
+    "points_if_yes": { "Fifth Disease": "med" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_fifth_lacy_rash"],
+    "next_questions_if_no": ["sub_fifth_lacy_rash"]
+  },
+  {
+    "id": "sub_fifth_lacy_rash",
+    "text": "Did a lacy, net-like rash appear on the trunk or limbs afterward?",
+    "points_if_yes": { "Fifth Disease": "high" },
+    "points_if_no": { "Fifth Disease": "n_med" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+
+  {
+    "id": "root_measles_3cs",
+    "text": "Did the illness start with high fever, cough, runny nose, and red eyes?",
+    "points_if_yes": { "Measles": "high" },
+    "points_if_no": { "Measles": "n_high" },
+    "next_questions_if_yes": ["sub_measles_face_start"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_measles_face_start",
+    "text": "Did the rash begin on the face or hairline?",
+    "points_if_yes": { "Measles": "high" },
+    "points_if_no": { "Measles": "n_med" },
+    "next_questions_if_yes": ["sub_measles_spread_down"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_measles_spread_down",
+    "text": "Did the rash spread downward to the trunk and limbs?",
+    "points_if_yes": { "Measles": "very_high" },
+    "points_if_no": { "Measles": "n_high" },
+    "next_questions_if_yes": ["sub_measles_fever_spike"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_measles_fever_spike",
+    "text": "Did the fever get worse when the rash appeared?",
+    "points_if_yes": { "Measles": "high" },
+    "points_if_no": { "Measles": "n_low" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+
+  {
+    "id": "root_roseola_high_fever",
+    "text": "Was there a very high fever for several days before the rash appeared?",
+    "points_if_yes": { "Roseola": "high" },
+    "points_if_no": { "Roseola": "n_high" },
+    "next_questions_if_yes": ["sub_roseola_fever_breaks"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_roseola_fever_breaks",
+    "text": "Did the fever suddenly stop before the rash started?",
+    "points_if_yes": { "Roseola": "very_high" },
+    "points_if_no": { "Roseola": "n_med" },
+    "next_questions_if_yes": ["sub_roseola_trunk_not_itchy"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_roseola_trunk_not_itchy",
+    "text": "Did the rash start on the trunk and is it not itchy?",
+    "points_if_yes": { "Roseola": "high" },
+    "points_if_no": { "Roseola": "n_low" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+
+  {
+    "id": "root_varicella_prodrome",
+    "text": "Did you have fever or feel unwell before the rash appeared?",
+    "points_if_yes": { "Varicella": "high" },
+    "points_if_no": { "Varicella": "n_med" },
+    "next_questions_if_yes": ["sub_varicella_itch"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_varicella_itch",
+    "text": "Is the rash very itchy?",
+    "points_if_yes": { "Varicella": "med" },
+    "points_if_no": { "Varicella": "n_low" },
+    "next_questions_if_yes": ["sub_varicella_stages"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_varicella_stages",
+    "text": "Do you see spots, fluid-filled blisters, and crusts at the same time (different stages)?",
+    "points_if_yes": { "Varicella": "very_high" },
+    "points_if_no": { "Varicella": "n_high" },
+    "next_questions_if_yes": ["sub_varicella_trunk_start"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_varicella_trunk_start",
+    "text": "Did the rash start on the trunk (chest/back) and then spread outward?",
+    "points_if_yes": { "Varicella": "high" },
+    "points_if_no": { "Varicella": "n_low" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+
+  {
+    "id": "root_bite_itchy",
+    "text": "Are the lesions intensely itchy?",
+    "points_if_yes": { "Arthropod Bite": "high" },
+    "points_if_no": { "Arthropod Bite": "n_high" },
+    "next_questions_if_yes": ["sub_bite_sudden"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_bite_sudden",
+    "text": "Did the lesions appear suddenly, often overnight?",
+    "points_if_yes": { "Arthropod Bite": "med" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_bite_pattern"],
+    "next_questions_if_no": ["sub_bite_night_itch"]
+  },
+  {
+    "id": "sub_bite_pattern",
+    "text": "Are the lesions clustered or in a line on exposed skin (arms, legs, ankles)?",
+    "points_if_yes": { "Arthropod Bite": "high" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_bite_punctum"],
+    "next_questions_if_no": ["sub_bite_night_itch"]
+  },
+  {
+    "id": "sub_bite_night_itch",
+    "text": "Is the itching worse at night?",
+    "points_if_yes": { "Arthropod Bite": "med" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_bite_contacts"],
+    "next_questions_if_no": ["sub_bite_punctum"]
+  },
+  {
+    "id": "sub_bite_contacts",
+    "text": "Have close contacts also developed a similar itchy rash?",
+    "points_if_yes": { "Arthropod Bite": "high" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_bite_punctum"],
+    "next_questions_if_no": ["sub_bite_punctum"]
+  },
+  {
+    "id": "sub_bite_punctum",
+    "text": "Is there a visible central punctum or bite mark?",
+    "points_if_yes": { "Arthropod Bite": "high" },
+    "points_if_no": { "Arthropod Bite": "n_low" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+
+  {
+    "id": "root_wart_texture",
+    "text": "Is the lesion a rough, thickened bump that interrupts normal skin lines?",
+    "points_if_yes": { "Wart": "high" },
+    "points_if_no": { "Wart": "n_high" },
+    "next_questions_if_yes": ["sub_wart_duration"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_wart_duration",
+    "text": "Has the lesion been present for a long time and grown slowly?",
+    "points_if_yes": { "Wart": "high" },
+    "points_if_no": { "Wart": "n_med" },
+    "next_questions_if_yes": ["sub_wart_black_dots"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_wart_black_dots",
+    "text": "Are tiny black dots visible on the surface?",
+    "points_if_yes": { "Wart": "very_high" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_wart_pain"],
+    "next_questions_if_no": ["sub_wart_pain"]
+  },
+  {
+    "id": "sub_wart_pain",
+    "text": "Is the lesion painless or only mildly tender when pressed?",
+    "points_if_yes": { "Wart": "med" },
+    "points_if_no": { "Wart": "n_low" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+
+  {
+    "id": "root_biofilm_nonhealing",
+    "text": "Has the wound failed to heal despite proper wound care for several weeks?",
+    "points_if_yes": { "Biofilm": "high" },
+    "points_if_no": { "Biofilm": "n_high" },
+    "next_questions_if_yes": ["sub_biofilm_treatment_failure"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_biofilm_treatment_failure",
+    "text": "Has the wound shown little or no improvement despite antibiotics or antiseptic dressings?",
+    "points_if_yes": { "Biofilm": "high" },
+    "points_if_no": { "Biofilm": "n_med" },
+    "next_questions_if_yes": ["sub_biofilm_recurrence"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_biofilm_recurrence",
+    "text": "Has the wound partially healed and then broken down again repeatedly?",
+    "points_if_yes": { "Biofilm": "very_high" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_biofilm_exudate"],
+    "next_questions_if_no": ["sub_biofilm_exudate"]
+  },
+  {
+    "id": "sub_biofilm_exudate",
+    "text": "Is there persistent wound drainage or an unpleasant odor?",
+    "points_if_yes": { "Biofilm": "high" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_biofilm_slough"],
+    "next_questions_if_no": ["sub_biofilm_slough"]
+  },
+  {
+    "id": "sub_biofilm_slough",
+    "text": "Is yellow-gray slough or unhealthy granulation tissue present?",
+    "points_if_yes": { "Biofilm": "high" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_biofilm_resistance"],
+    "next_questions_if_no": ["sub_biofilm_resistance"]
+  },
+  {
+    "id": "sub_biofilm_resistance",
+    "text": "Have multiple treatments failed to resolve the wound?",
+    "points_if_yes": { "Biofilm": "very_high" },
+    "points_if_no": { "Biofilm": "med" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+
+  {
+    "id": "root_tinea_rash",
+    "text": "Is there a visible rash on the skin?",
+    "points_if_yes": { "Tinea": "low" },
+    "points_if_no": { "Tinea": "n_high" },
+    "next_questions_if_yes": ["root_tinea_itch"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "root_tinea_itch",
+    "text": "Is the rash very itchy?",
+    "points_if_yes": { "Tinea": "med" },
+    "points_if_no": { "Tinea": "n_med" },
+    "next_questions_if_yes": ["sub_tinea_ring"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_tinea_ring",
+    "text": "Does the lesion have a ring shape with a raised, scaly border and central clearing?",
+    "points_if_yes": { "Tinea": "high" },
+    "points_if_no": { "Tinea": "n_high" },
+    "next_questions_if_yes": ["sub_tinea_spread"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_tinea_spread",
+    "text": "Is the rash slowly expanding outward?",
+    "points_if_yes": { "Tinea": "med" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_tinea_contact"],
+    "next_questions_if_no": ["sub_tinea_contact"]
+  },
+  {
+    "id": "sub_tinea_contact",
+    "text": "Have you had contact with pets or people with a similar rash?",
+    "points_if_yes": { "Tinea": "high" },
+    "points_if_no": {},
+    "next_questions_if_yes": [],
+    "next_questions_if_no": ["sub_tinea_other_sites"]
+  },
+  {
+    "id": "sub_tinea_other_sites",
+    "text": "Do you have fungal infection on feet, groin, or nails?",
+    "points_if_yes": { "Tinea": "med" },
+    "points_if_no": { "Tinea": "low" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+
+  {
+    "id": "root_hsv_blisters",
+    "text": "Are there small, painful fluid-filled blisters on or around the lips?",
+    "points_if_yes": { "HSV": "high" },
+    "points_if_no": { "HSV": "n_high" },
+    "next_questions_if_yes": ["sub_hsv_prodrome"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_hsv_prodrome",
+    "text": "Did you feel tingling, burning, or numbness before the blisters appeared?",
+    "points_if_yes": { "HSV": "high" },
+    "points_if_no": { "HSV": "low" },
+    "next_questions_if_yes": ["sub_hsv_recurrence"],
+    "next_questions_if_no": ["sub_hsv_recurrence"]
+  },
+  {
+    "id": "sub_hsv_recurrence",
+    "text": "Have you had similar lip sores before?",
+    "points_if_yes": { "HSV": "very_high" },
+    "points_if_no": {},
+    "next_questions_if_yes": [],
+    "next_questions_if_no": ["sub_hsv_fever"]
+  },
+  {
+    "id": "sub_hsv_fever",
+    "text": "Did you have fever, sore throat, or swollen glands?",
+    "points_if_yes": { "HSV": "med" },
+    "points_if_no": { "HSV": "low" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  }
+,{
+  "id": "root_impetigo_crust",
+  "text": "Did the lesion start as a blister or pustule that burst and left a honey-colored crust?",
+  "points_if_yes": { "Impetigo": "high" },
+  "points_if_no": { "Impetigo": "n_high" },
+  "next_questions_if_yes": ["sub_impetigo_location"],
+  "next_questions_if_no": []
+},
+  {
+    "id": "sub_impetigo_location",
+    "text": "Are the lesions located around the mouth or nose?",
+    "points_if_yes": { "Impetigo": "med" },
+    "points_if_no": { "Impetigo": "low" },
+    "next_questions_if_yes": ["sub_impetigo_trauma"],
+    "next_questions_if_no": ["sub_impetigo_trauma"]
+  },
+  {
+    "id": "sub_impetigo_trauma",
+    "text": "Did the lesion appear after a cut, scratch, or insect bite?",
+    "points_if_yes": { "Impetigo": "med" },
+    "points_if_no": {},
+    "next_questions_if_yes": ["sub_impetigo_contacts"],
+    "next_questions_if_no": ["sub_impetigo_contacts"]
+  },
+  {
+    "id": "sub_impetigo_contacts",
+    "text": "Have close contacts developed similar crusted sores?",
+    "points_if_yes": { "Impetigo": "very_high" },
+    "points_if_no": {},
+    "next_questions_if_yes": [],
+    "next_questions_if_no": ["sub_impetigo_fever"]
+  },
+  {
+    "id": "sub_impetigo_fever",
+    "text": "Is there no fever or only mild systemic symptoms?",
+    "points_if_yes": { "Impetigo": "med" },
+    "points_if_no": { "Impetigo": "n_med" },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "root_eczema_itch",
+    "text": "Is itching the main and most disturbing symptom?",
+    "points_if_yes": { "eczema": "high" },
+    "points_if_no": { "psoriasis": "low", "rosacea": "low" },
+    "next_questions_if_yes": ["sub_eczema_night_itch", "sub_eczema_oozing_dry", "sub_eczema_atopy"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "root_eczema_flexural",
+    "text": "Are the lesions mainly in skin folds (elbow folds, behind knees, neck)?",
+    "points_if_yes": { "eczema": "high" },
+    "points_if_no": { "psoriasis": "low", "rosacea": "low" },
+    "next_questions_if_yes": ["sub_eczema_night_itch", "sub_eczema_lichenification", "sub_eczema_atopy"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_eczema_night_itch",
+    "text": "Is the itching worse at night?",
+    "points_if_yes": { "eczema": "high" },
+    "points_if_no": { "eczema": "low" }
+  },
+  {
+    "id": "sub_eczema_oozing_dry",
+    "text": "Does the skin get very dry, cracked, or ooze fluid during flares?",
+    "points_if_yes": { "eczema": "medium" },
+    "points_if_no": { "eczema": "low" }
+  },
+  {
+    "id": "sub_eczema_lichenification",
+    "text": "Has repeated scratching caused thickened or leathery skin?",
+    "points_if_yes": { "eczema": "medium" },
+    "points_if_no": { "eczema": "low" }
+  },
+  {
+    "id": "sub_eczema_atopy",
+    "text": "Do you have a history of asthma, allergic rhinitis, or childhood eczema?",
+    "points_if_yes": { "eczema": "high" },
+    "points_if_no": { "eczema": "low" }
+  },
+
+  {
+    "id": "root_psoriasis_scale",
+    "text": "Are there thick, silvery-white scales on a well-defined plaque?",
+    "points_if_yes": { "psoriasis": "high" },
+    "points_if_no": { "eczema": "low", "rosacea": "low" },
+    "next_questions_if_yes": ["sub_psoriasis_symmetry", "sub_psoriasis_nails", "sub_psoriasis_joints"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "root_psoriasis_border",
+    "text": "Are the lesion borders sharp and clearly defined?",
+    "points_if_yes": { "psoriasis": "medium" },
+    "points_if_no": { "eczema": "medium" },
+    "next_questions_if_yes": ["sub_psoriasis_scale_presence", "sub_psoriasis_nails", "sub_psoriasis_symmetry"],
+    "next_questions_if_no": ["sub_eczema_night_itch", "sub_eczema_oozing_dry"]
+  },
+  {
+    "id": "sub_psoriasis_scale_presence",
+    "text": "Do the plaques shed thick scale when rubbed or scratched?",
+    "points_if_yes": { "psoriasis": "high" },
+    "points_if_no": { "psoriasis": "low" }
+  },
+  {
+    "id": "sub_psoriasis_symmetry",
+    "text": "Are similar plaques present symmetrically on both sides of the body?",
+    "points_if_yes": { "psoriasis": "medium" },
+    "points_if_no": { "psoriasis": "low" }
+  },
+  {
+    "id": "sub_psoriasis_nails",
+    "text": "Do you have nail changes such as pitting or nail separation?",
+    "points_if_yes": { "psoriasis": "high" },
+    "points_if_no": { "psoriasis": "low" }
+  },
+  {
+    "id": "sub_psoriasis_joints",
+    "text": "Do you have joint pain or morning stiffness?",
+    "points_if_yes": { "psoriasis": "high" },
+    "points_if_no": { "psoriasis": "low" }
+  },
+
+  {
+    "id": "root_rosacea_face",
+    "text": "Is the redness mainly on the central face (cheeks, nose, forehead)?",
+    "points_if_yes": { "rosacea": "high" },
+    "points_if_no": { "eczema": "low", "psoriasis": "low" },
+    "next_questions_if_yes": ["sub_rosacea_flushing", "sub_rosacea_triggers", "sub_rosacea_vessels"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_rosacea_flushing",
+    "text": "Do you have frequent flushing episodes that come and go?",
+    "points_if_yes": { "rosacea": "high" },
+    "points_if_no": { "eczema": "low", "psoriasis": "low" },
+    "next_questions_if_yes": ["sub_rosacea_triggers", "sub_rosacea_vessels", "sub_rosacea_stinging_burning"],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_rosacea_triggers",
+    "text": "Are symptoms triggered by heat, spicy food, alcohol, or stress?",
+    "points_if_yes": { "rosacea": "medium" },
+    "points_if_no": { "rosacea": "low" }
+  },
+  {
+    "id": "sub_rosacea_vessels",
+    "text": "Are small visible blood vessels present on the affected area?",
+    "points_if_yes": { "rosacea": "high" },
+    "points_if_no": { "rosacea": "low" }
+  },
+  {
+    "id": "sub_rosacea_stinging_burning",
+    "text": "Do you feel stinging or burning rather than intense itching?",
+    "points_if_yes": { "rosacea": "medium" },
+    "points_if_no": { "eczema": "low" }
+  },
+  {
+    "id": "root_vitiligo_scales",
+    "text": "Do the lesions have scales?",
+    "points_if_yes": {
+      "Vitiligo": "n_very_high"
+    },
+    "points_if_no": {
+      "Vitiligo": "med"
+    },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": [
+      "sub_vitiligo_borders"
+    ]
+  },
+  {
+    "id": "sub_vitiligo_borders",
+    "text": "Can you clearly see where the spot ends and normal skin begins?",
+    "points_if_yes": {
+      "Vitiligo": "very_high"
+    },
+    "points_if_no": {
+      "Vitiligo": "n_high"
+    },
+    "next_questions_if_yes": [
+      "sub_vitiligo_hair"
+    ],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_vitiligo_hair",
+    "text": "Has the hair inside the white spot also turned white?",
+    "points_if_yes": {
+      "Vitiligo": "very_high"
+    },
+    "points_if_no": {
+      "Vitiligo": "low"
+    },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "root_drug_eruption",
+    "text": "Did you use or take any new drugs/medications recently?",
+    "points_if_yes": {
+      "Drug Eruption": "med"
+    },
+    "points_if_no": {
+      "Drug Eruption": "n_very_high"
+    },
+    "next_questions_if_yes": [
+      "sub_drug_eruption_symmetry"
+    ],
+    "next_questions_if_no": []
+  },
+  {
+    "id": "sub_drug_eruption_symmetry",
+    "text": "Do the lesions show up in the same place on the left and right sides of the body (symmetric)?",
+    "points_if_yes": {
+      "Drug Eruption": "very_high"
+    },
+    "points_if_no": {
+      "Drug Eruption": "low"
+    },
+    "next_questions_if_yes": [
+      "sub_drug_eruption_sjs_blisters"
+    ],
+    "next_questions_if_no": [
+      "sub_drug_eruption_sjs_blisters"
+    ]
+  },
+  {
+    "id": "sub_drug_eruption_sjs_blisters",
+    "text": "Do any lesions turn into blisters, or is the top layer of skin slipping off/peeling away?",
+    "points_if_yes": {
+      "Critical Drug Eruption": "very_high"
+    },
+    "points_if_no": {
+      "Critical Drug Eruption": "n_med"
+    },
+    "next_questions_if_yes": [
+      "sub_drug_eruption_sjs_mucosa"
+    ],
+    "next_questions_if_no": [
+      "sub_drug_eruption_sjs_mucosa"
+    ]
+  },
+  {
+    "id": "sub_drug_eruption_sjs_mucosa",
+    "text": "Are the lips, mouth, eyes or genital parts raw with open sores?",
+    "points_if_yes": {
+      "Critical Drug Eruption": "very_high"
+    },
+    "points_if_no": {
+      "Critical Drug Eruption": "n_med"
+    },
+    "next_questions_if_yes": [],
+    "next_questions_if_no": []
+  }
+]
