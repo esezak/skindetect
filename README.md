@@ -155,4 +155,4 @@ Key patterns:
 4. Open a PR with a clear description and screenshots when UI changes
 
 ## License
-Add your license of choice (MIT/Apache-2.0) in a `LICENSE` file.
+None
