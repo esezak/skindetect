@@ -10,7 +10,7 @@ Local, offline skin condition detection built with Flutter. Capture or pick an i
 - On‑device inference with `tflite_flutter` (no network required)
 - Questionnaire fusion (AI + answers) via a scoring engine
 - History of previous scans with images and results (local, via Hive)
-- Works on Android and Windows; iOS and Web status depends on platform support and entitlements
+- Currently supported platform: Android (other TensorFlow Lite-capable platforms may be supported with additional setup)
 
 ## How it works (pipeline)
 1. User takes a photo in the camera view and aligns the lesion within the rounded guide frame.
@@ -40,10 +40,9 @@ If you swap the model, update at least:
 ## Getting started
 
 ### Prerequisites
-- Flutter SDK (stable), compatible with Dart `^3.10.0` (see `pubspec.yaml`)
-- Android Studio/Xcode/VS Code as you prefer
-- For Android: Android SDK and an emulator or a physical device
-- For Windows desktop: Windows toolchain enabled (`flutter config --enable-windows-desktop`)
+- Flutter SDK (stable), compatible with Dart (see `pubspec.yaml`)
+- Android Studio/VS Code as you prefer
+- Android SDK and an emulator or a physical device
 
 ### Install dependencies
 ```powershell
@@ -51,18 +50,14 @@ flutter --version
 flutter pub get
 ```
 
-### Run the app
-- Android (recommended for camera testing):
+### Run the app (Android)
 ```powershell
-flutter run -d android
-```
-- Windows (desktop):
-```powershell
-flutter run -d windows
-```
-- iOS (requires a Mac + proper signing; see iOS notes below):
-```bash
-flutter run -d ios
+# Optional: verify setup
+flutter doctor
+flutter devices
+
+# Run on Android (debug)
+flutter run
 ```
 
 ## Platform notes
@@ -70,24 +65,6 @@ flutter run -d ios
 ### Android
 - Permissions are declared in `android/app/src/main/AndroidManifest.xml` (Camera and Storage). Ensure `minSdkVersion` is at least 26 in `android/app/build.gradle`.
 - Physical devices work best for camera + flash. Emulators may have limited camera features.
-
-### iOS
-Add the following keys to `ios/Runner/Info.plist` if you plan to run on iOS:
-```xml
-<key>NSCameraUsageDescription</key>
-<string>Camera access is required to capture skin images for analysis.</string>
-<key>NSPhotoLibraryAddUsageDescription</key>
-<string>Saving processed images to your library requires permission.</string>
-<key>NSPhotoLibraryUsageDescription</key>
-<string>Selecting an image from your photo library requires permission.</string>
-```
-TFLite on iOS requires proper bundling; `tflite_flutter` supports iOS, but device runtime setup, bitcode, and architectures must be correct.
-
-### Windows
-Windows desktop is supported when native assets are available. Ensure your Visual Studio toolchain is installed (Desktop development with C++).
-
-### Web
-This project includes a `web/` folder, but `tflite_flutter` does not run on the web. Running on web would require a different inference backend (e.g., TF.js) and is out of scope for this repo.
 
 ## Running tests
 Unit tests cover image preprocessing and classification paths:
@@ -137,13 +114,6 @@ Key patterns:
 - Pure Dart image ops (`package:image`) for crop/resize
 - Local persistence via Hive
 
-## Troubleshooting
-- Black or stretched preview: ensure `CameraPreview` is using cover fit and mapping is done via `normalizeScanWindowToImage`.
-- Shape mismatch in TFLite: verify input tensor is resized to `[1, 416, 416, 3]` and `allocateTensors()` is called (already handled in `ClassifierService`).
-- iOS build fails due to permissions: add the Info.plist keys listed above.
-- Android storage write issues on Android 10+: external write permission is restricted; this app stores images internally via `path_provider` in History operations.
-- Flash not toggling: physical device required; many emulators don’t support torch mode.
-
 ## Privacy & disclaimer
 - All processing is done locally on-device. Images and results are stored locally using Hive.
 - This app is not intended to diagnose, treat, or cure any disease. It is for educational/research purposes only.
@@ -156,3 +126,89 @@ Key patterns:
 
 ## License
 None
+
+# User Guide and Code Repository
+
+## Code Repository
+- GitHub repository link: https://github.com/esezak/skindetect
+- Short description: A Flutter mobile app that analyzes skin images using an on-device TensorFlow Lite model, combines AI scores with a short questionnaire, and presents condition likelihoods.
+- Programming language(s) and main libraries:
+  - Dart (Flutter)
+  - Core packages (see `pubspec.yaml` for versions): camera, image_picker, hive, tflite_flutter
+- Repository structure (brief):
+  - `lib/` — app source (UI, features, services)
+  - `assets/` — TFLite model and app assets
+  - `android/`, `ios/`, `web/`, `windows/` — platform scaffolding
+  - `test/` — unit tests
+
+
+---
+
+## Developer Guide for Windows
+
+This section explains how a user can run and use the application on Windows.
+
+### 1. System Requirements
+- Operating system: Windows 10/11
+- Required software:
+  - Flutter SDK (stable channel)
+  - Android Studio with Android SDK and platform-tools
+  - An Android device (USB debugging enabled) or Android emulator
+- Libraries/frameworks: Managed via Flutter; see `pubspec.yaml` for exact dependency versions.
+
+### 2. Installation
+- Clone the repository and install dependencies (Windows PowerShell):
+
+```powershell
+# Clone the repository
+git clone https://github.com/esezak/skindetect.git
+cd skindetect
+
+# Fetch Dart/Flutter dependencies
+flutter pub get
+```
+
+### 3. Running the Application
+- Run on an Android device or emulator (debug):
+
+```powershell
+# Optional: ensure Flutter and devices are recognized
+flutter doctor
+flutter devices
+
+# Run in debug mode on the selected Android device/emulator
+flutter run
+```
+
+- Build a debug APK (no release keys required):
+
+```powershell
+# Build a debug APK
+flutter build apk --debug
+
+# The APK will be available under: build\app\outputs\apk\debug\app-debug.apk
+```
+
+- Alternatively, download the APK from GitHub Releases:
+  - Visit the repository Releases page and download the provided APK.
+
+### 4. Input and Output
+- Input:
+  - Capture a skin image via camera or select one from the gallery.
+  - Answer a short questionnaire to refine results.
+- Output:
+  - A ranked list of skin conditions with percentages.
+  - Saved history entry that can be revisited and updated after answering questions.
+
+### 5. Example Usage
+1. Open the app on your Android device/emulator.
+2. Tap “Take a picture” or “Select From Gallery” to provide an image.
+3. Review the initial results.
+4. Tap “Answer Questions to Improve Accuracy” and complete the questionnaire.
+5. The results update and are saved to history.
+
+### 6. Notes and Limitations
+- Platform support:
+  - Currently, only the Android version is supported.
+  - It is possible to make the app work on other platforms that support TensorFlow Lite (e.g., iOS, desktop) with additional setup.
+- Permissions: Camera and storage permissions are required for capture and saving results.

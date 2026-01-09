@@ -29,6 +29,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
 
   // State variables to allow UI updates
   late Map<String, double> _rawAiResults;
+  late Map<String, double> _displayResults;
 
   @override
   void initState() {
@@ -37,6 +38,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
 
     // If raw data isn't passed, assume current results are raw
     _rawAiResults = widget.rawAiResult ?? widget.results;
+    _displayResults = Map<String, double>.from(widget.results);
 
     if (!widget.fromHistory) {
       _saveNewScan();
@@ -115,7 +117,8 @@ class _ResultsScreenState extends State<ResultsScreen> {
     // If we got data back (User clicked Finish)
     if (newScores != null && mounted) {
       setState(() {
-      // Update UI immediately
+        // Update UI immediately with the new results
+        _displayResults = newScores;
       });
 
       // Update Database Entry (if it exists)
@@ -133,12 +136,22 @@ class _ResultsScreenState extends State<ResultsScreen> {
     }
   }
 
+  // Treat anything that would display as 0.0% as zero (<= 0.0005 fraction)
+  bool _isEffectivelyZero(double v) => v <= 0.0005;
+
   @override
   Widget build(BuildContext context) {
     // Sort results for display
-    final sortedEntries = widget.results.entries.toList()
+    final sortedEntries = _displayResults.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
     final topResult = sortedEntries.isNotEmpty ? sortedEntries.first : null;
+
+    // Split into top 5 and the rest > 0 (by display significance)
+    final firstFive = sortedEntries.take(5).toList();
+    final restPositive = sortedEntries
+        .skip(5)
+        .where((e) => !_isEffectivelyZero(e.value))
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -214,8 +227,13 @@ class _ResultsScreenState extends State<ResultsScreen> {
                     const SizedBox(height: 24),
                   ],
 
-                  // LIST OF CONFIDENCE BARS
-                  ...sortedEntries.map((entry) => _ResultRow(
+                  // LIST OF CONFIDENCE BARS (first 5 always, rest only if > 0 by display)
+                  ...firstFive.map((entry) => _ResultRow(
+                    label: cleanKey(entry.key),
+                    confidence: entry.value,
+                    isHighlight: entry == topResult,
+                  )),
+                  ...restPositive.map((entry) => _ResultRow(
                     label: cleanKey(entry.key),
                     confidence: entry.value,
                     isHighlight: entry == topResult,
@@ -225,13 +243,15 @@ class _ResultsScreenState extends State<ResultsScreen> {
                   const Divider(),
                   const SizedBox(height: 24),
 
-                  // QUESTIONNAIRE BUTTON
-                  OutlinedButton.icon(
-                    onPressed: _openQuestionnaire,
-                    icon: const Icon(Icons.assignment_turned_in_outlined),
-                    label: const Text('Answer Questions to Improve Accuracy'),
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                  // QUESTIONNAIRE BUTTON (centered)
+                  Center(
+                    child: OutlinedButton.icon(
+                      onPressed: _openQuestionnaire,
+                      icon: const Icon(Icons.assignment_turned_in_outlined),
+                      label: const Text('Answer Questions to Improve Accuracy', textAlign: TextAlign.center),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                      ),
                     ),
                   ),
                 ],

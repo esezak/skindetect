@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    And change `minSdkVersion` to **26** in `android/app/build.gradle`.
+    <!-- Note: minSdkVersion is set in Gradle config. -->
     <application
         android:label="skindetect"
         android:name="${applicationName}"
